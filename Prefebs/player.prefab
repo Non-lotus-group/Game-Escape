@@ -131,7 +131,8 @@ MonoBehaviour:
   JumpCount: 0
   JumpResetTime: 0
   HorizontalSpeedItemPromote: 0
-  SwordLight: {fileID: 0}
+  SwordLight: {fileID: 68187052087795416, guid: 1098e8862cf3149a7b85318726d9ab60,
+    type: 3}
   CoolDownCount: 0
   AttackReady: 0
 --- !u!1 &8426387747229671440

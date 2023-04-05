@@ -18,7 +18,10 @@ public class GetPlayer : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector3 PlayerPosition = new Vector3(Player.transform.position.x, Player.transform.position.y, -10f);
-        transform.position = Vector3.Lerp(transform.position, PlayerPosition, 15f*Time.deltaTime);
+        if (Player != null) {
+            Vector3 PlayerPosition = new Vector3(Player.transform.position.x, Player.transform.position.y, -10f);
+            transform.position = Vector3.Lerp(transform.position, PlayerPosition, 15f * Time.deltaTime);
+        }
+        
     }
 }
