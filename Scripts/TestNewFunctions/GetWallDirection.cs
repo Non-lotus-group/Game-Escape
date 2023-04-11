@@ -52,12 +52,18 @@ public class GetWallDirection : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         Vector3 HitPoint = collision.ClosestPoint(transform.position);
         HitNormal = (this.transform.position - HitPoint).normalized;
+        Debug.Log(this.transform.position);
+        Debug.Log(HitPoint);
+        float LandAngle = Mathf.Atan2(HitNormal.x, HitNormal.y) * Mathf.Rad2Deg;
         IsFly = false;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -LandAngle));
     }
 
-    void SetGravity() {
-        Physics.gravity = HitNormal*10f;
+    void SetGravity()
+    {
+        Physics.gravity = HitNormal * 100f;
     }
 }

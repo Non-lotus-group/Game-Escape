@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject SwordLight;
     public float CoolDownCount;
     public bool AttackReady;
+    public bool IsFly;
+    public Vector2 HitNormal;
 
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class PlayerManager : MonoBehaviour
         HorizontalSpeedItemPromote = 1;
         CoolDownCount = 2;
         AttackReady = true;
+        IsFly = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -40,25 +44,26 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (AbleJump == true)
-        {
-            MoveHorizontal();
-            PlayerRigidBody.gravityScale = 1;
-            Jump();
-            JumpReset();
-        }
-        if (AbleJump == false)
-        {
-            JumpRotate();
-        }
+        MoveHorizontal();
         GetMousePos();
         Attack();
+        Jump();
+        JumpReset();
+        JumpRotate();
     }
 
 
     void MoveHorizontal()
     {
-        PlayerRigidBody.velocity = new Vector2(Input.GetAxis("Horizontal") * HorizontalSpeedItemPromote * HorizontalSpeed, PlayerRigidBody.velocity.y);
+        if (IsFly == false)
+        {
+            Vector2 Movedirection = new Vector2(Input.GetAxis("Horizontal"), 0);
+            Movedirection = transform.TransformDirection(Movedirection);
+            PlayerRigidBody.velocity = Movedirection *0.1f* HorizontalSpeedItemPromote * HorizontalSpeed + new Vector2(0, PlayerRigidBody.velocity.y);
+
+            //PlayerRigidBody.velocity = new Vector2(Input.GetAxis("Horizontal") * HorizontalSpeedItemPromote * HorizontalSpeed, PlayerRigidBody.velocity.y);
+
+        }
     }
     void GetMousePos()
     {
@@ -69,13 +74,18 @@ public class PlayerManager : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (IsFly == false)
         {
-            PlayerRigidBody.AddForce(JumpDir * 2f * (JumpCount + 1), ForceMode2D.Impulse);//后期换成曲线涨幅？
-            AbleJump = false;
-            PlayerRigidBody.gravityScale = 0;
-            JumpCount++;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PlayerRigidBody.AddForce(JumpDir * 5f * (JumpCount + 1), ForceMode2D.Impulse);//后期换成曲线涨幅？
+                IsFly = true;
+                PlayerRigidBody.gravityScale = 0;
+                JumpCount++;
+            }
         }
+
+
     }
     void Attack()
     {//实例化swordLight
@@ -113,7 +123,29 @@ public class PlayerManager : MonoBehaviour
     }
     void JumpRotate()
     {
-        this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, JumpAlgle - 90));
+        if (IsFly == true)
+        {
+            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, JumpAlgle - 90));
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if (collider2D.tag == "Wall")
+        {
+            Vector3 HitPoint = collider2D.ClosestPoint(transform.position);
+            HitNormal = (this.transform.position - HitPoint).normalized;
+            IsFly = false;
+            float LandAngle = Mathf.Atan2(HitNormal.x, HitNormal.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, -LandAngle));
+        }
+
+    }
+
+    void SetGravity()
+    {
+        Physics.gravity = HitNormal * 10f;
     }
 
 }
