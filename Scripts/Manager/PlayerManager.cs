@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         AbleJump = false;
         JumpResetTime = 4;
         JumpCount = 0;
-        HorizontalSpeed = 1f;
+        HorizontalSpeed = 5f;
         HorizontalSpeedItemPromote = 1;
         CoolDownCount = 2;
         AttackReady = true;
@@ -57,12 +57,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (IsFly == false)
         {
-            Vector2 Movedirection = new Vector2(Input.GetAxis("Horizontal"), 0);
-            Movedirection = transform.TransformDirection(Movedirection);
-            PlayerRigidBody.velocity = Movedirection *0.1f* HorizontalSpeedItemPromote * HorizontalSpeed + new Vector2(0, PlayerRigidBody.velocity.y);
-
-            //PlayerRigidBody.velocity = new Vector2(Input.GetAxis("Horizontal") * HorizontalSpeedItemPromote * HorizontalSpeed, PlayerRigidBody.velocity.y);
-
+            Vector3 playerXDirection = transform.TransformDirection(Vector3.right);
+            Vector3 playerXNormal = new Vector3(playerXDirection.x, playerXDirection.y, 0f).normalized;
+            PlayerRigidBody.velocity = Input.GetAxis("Horizontal") * HorizontalSpeed * playerXNormal;
         }
     }
     void GetMousePos()
@@ -82,6 +79,7 @@ public class PlayerManager : MonoBehaviour
                 IsFly = true;
                 PlayerRigidBody.gravityScale = 0;
                 JumpCount++;
+                Debug.Log(JumpCount);
             }
         }
 
@@ -139,6 +137,7 @@ public class PlayerManager : MonoBehaviour
             IsFly = false;
             float LandAngle = Mathf.Atan2(HitNormal.x, HitNormal.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -LandAngle));
+
         }
 
     }
