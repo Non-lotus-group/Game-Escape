@@ -50,6 +50,8 @@ public class PlayerManager : MonoBehaviour
         Jump();
         JumpReset();
         JumpRotate();
+        Debug.Log(JumpCount);
+        SetGravity();
     }
 
 
@@ -109,15 +111,18 @@ public class PlayerManager : MonoBehaviour
     }
     void JumpReset()
     {
-        if (JumpResetTime > 0)
-        {
-            JumpResetTime -= Time.deltaTime;
+        if (IsFly == false) {
+            if (JumpResetTime > 0)
+            {
+                JumpResetTime -= Time.deltaTime;
+            }
+            else
+            {
+                JumpCount = 0;
+                JumpResetTime = 4;
+            }
         }
-        else
-        {
-            JumpCount = 0;
-            JumpResetTime = 4;
-        }
+           
     }
     void JumpRotate()
     {
@@ -137,7 +142,7 @@ public class PlayerManager : MonoBehaviour
             IsFly = false;
             float LandAngle = Mathf.Atan2(HitNormal.x, HitNormal.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -LandAngle));
-
+            JumpResetTime = 4f;
         }
 
     }
