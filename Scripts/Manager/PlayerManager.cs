@@ -50,7 +50,6 @@ public class PlayerManager : MonoBehaviour
         Jump();
         JumpReset();
         JumpRotate();
-        Debug.Log(JumpCount);
         SetGravity();
     }
 

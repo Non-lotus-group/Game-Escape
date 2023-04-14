@@ -6725,3 +6725,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColliders: []
+  enemyGroup:
+  - {fileID: 7811901640293377383, guid: c84ea209e5e414874ad521222ffe3f74, type: 3}
+  - {fileID: 3041202523366591466, guid: 8b1e50c70f3754589a929e2d20b37d07, type: 3}
+  GameTime: 0
+  BoxNum: 0
+  EnemyNum: 0
