@@ -13,6 +13,7 @@ public class EnemyBase : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
+        Health = 100f;
     }
 
     private void Update()
@@ -27,9 +28,23 @@ public class EnemyBase : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerBallet") {
-            Health = Health - 10;
-            Debug.Log(Health);
+            SwordAttack Sward = collision.gameObject.GetComponent<SwordAttack>();
+            Debug.Log("hit");
+            if (Sward != null)
+            {
+                float AttackValue = Sward.AttackValue;
+                Health = Health - AttackValue;
+                Debug.Log(Health);
+            }
+            else {
+                Debug.Log("not catch");
+            }
+
         }
     }
-
+    void SelfDestory() {
+        if (Health < 0) {
+            Destroy(this.gameObject);
+        }
+    }
 }

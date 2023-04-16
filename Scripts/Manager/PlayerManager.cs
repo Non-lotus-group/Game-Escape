@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     public bool AttackReady;
     public bool IsFly;
     public Vector2 HitNormal;
+    public float attackValue;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PlayerManager : MonoBehaviour
         CoolDownCount = 2;
         AttackReady = true;
         IsFly = false;
+        attackValue = 70f;
     }
     // Start is called before the first frame update
     void Start()
@@ -102,7 +104,10 @@ public class PlayerManager : MonoBehaviour
         {
             if (AttackReady == true)
             {
-                Instantiate(SwordLight, SelfPos, SwordRotation);
+
+                GameObject instance =  Instantiate(SwordLight, SelfPos, SwordRotation);
+                SwordAttack swordAttack = instance.GetComponent<SwordAttack>();
+                swordAttack.AttackValue = attackValue;
                 AttackReady = false;
             }
         }

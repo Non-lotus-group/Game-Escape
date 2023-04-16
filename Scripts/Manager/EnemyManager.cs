@@ -55,7 +55,6 @@ public class EnemyManager : MonoBehaviour
         {
             //GameObject Enemy = enemyPool.GetObject();
             Vector2 spawnPosition = GetSpawnPoint();
-            Debug.Log(spawnPosition);
             Instantiate(enemyGroup[EnemyNum], spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(1f);
         }
