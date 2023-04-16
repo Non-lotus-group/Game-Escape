@@ -11,12 +11,14 @@ public class EnemyManager : MonoBehaviour
     public float GameTime;
     public int BoxNum;
     public int EnemyNum;
+    public GameObject Player;
     //public int PoolSize = 10;
     //private ObjectPool<GameObject>[] enemyPools;
 
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         // 获取当前物体及其所有子物体中所有的BoxCollider
         boxColliders = GetComponents<BoxCollider2D>();
         //enemyPools = new ObjectPool<GameObject>[enemyGroup.Length];
@@ -26,6 +28,7 @@ public class EnemyManager : MonoBehaviour
         //}
         StartCoroutine(SpawnEnemies());
 
+
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class EnemyManager : MonoBehaviour
         Timer();
         BoxNum = Random.Range(0, boxColliders.Length);
         EnemyNum = Random.Range(0, 2);
+
     }
 
     void Timer()
@@ -54,9 +58,14 @@ public class EnemyManager : MonoBehaviour
         while (true)
         {
             //GameObject Enemy = enemyPool.GetObject();
-            Vector2 spawnPosition = GetSpawnPoint();
+            Vector2 spawnPosition;
+            do
+            {
+                Debug.Log("flex");
+                spawnPosition = GetSpawnPoint();
+            } while (Vector2.Distance(spawnPosition, Player.transform.position) < 5f);
             Instantiate(enemyGroup[EnemyNum], spawnPosition, Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

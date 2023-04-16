@@ -18,16 +18,18 @@ public class EnemyBase : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
-    public virtual void Move() {
+    public virtual void Move()
+    {
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerBallet") {
+        if (collision.tag == "PlayerBallet")
+        {
             SwordAttack Sward = collision.gameObject.GetComponent<SwordAttack>();
             Debug.Log("hit");
             if (Sward != null)
@@ -36,14 +38,17 @@ public class EnemyBase : MonoBehaviour
                 Health = Health - AttackValue;
                 Debug.Log(Health);
             }
-            else {
+            else
+            {
                 Debug.Log("not catch");
             }
 
         }
     }
-    void SelfDestory() {
-        if (Health < 0) {
+    void SelfDestory()
+    {
+        if (Health < 0)
+        {
             Destroy(this.gameObject);
         }
     }

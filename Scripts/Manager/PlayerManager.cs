@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
             if (AttackReady == true)
             {
 
-                GameObject instance =  Instantiate(SwordLight, SelfPos, SwordRotation);
+                GameObject instance = Instantiate(SwordLight, SelfPos, SwordRotation);
                 SwordAttack swordAttack = instance.GetComponent<SwordAttack>();
                 swordAttack.AttackValue = attackValue;
                 AttackReady = false;
@@ -115,7 +115,8 @@ public class PlayerManager : MonoBehaviour
     }
     void JumpReset()
     {
-        if (IsFly == false) {
+        if (IsFly == false)
+        {
             if (JumpResetTime > 0)
             {
                 JumpResetTime -= Time.deltaTime;
@@ -126,7 +127,7 @@ public class PlayerManager : MonoBehaviour
                 JumpResetTime = 4;
             }
         }
-           
+
     }
     void JumpRotate()
     {
