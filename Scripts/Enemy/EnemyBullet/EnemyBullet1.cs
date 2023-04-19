@@ -1,30 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using MoreMountains.CorgiEngine;
 using UnityEngine;
 
-public class SwordAttack : MonoBehaviour
+public class EnemyBullet1 : MonoBehaviour
 {
-    public Rigidbody2D SwordRigid;
+    public Rigidbody2D BulletRigidBody;
     public Vector2 ThisPos;
     public float AttackValue;
     public float AttackRange;
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        SwordRigid = GetComponent<Rigidbody2D>();
+        BulletRigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SwordRigid.velocity = transform.right * 10f;
+        BulletRigidBody.velocity = transform.right * 10f;
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Recycler") && other.GetComponent<BoxCollider2D>() != null)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

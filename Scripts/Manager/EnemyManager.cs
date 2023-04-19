@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public int BoxNum;
     public int EnemyNum;
     public GameObject Player;
+    public float SpawnTime;
     //public int PoolSize = 10;
     //private ObjectPool<GameObject>[] enemyPools;
 
@@ -26,6 +27,7 @@ public class EnemyManager : MonoBehaviour
         //{
         //    enemyPools[i] = new ObjectPool<GameObject>(enemyGroup[i]);
         //}
+        SpawnTime = 2f;
         StartCoroutine(SpawnEnemies());
 
 
@@ -64,7 +66,7 @@ public class EnemyManager : MonoBehaviour
                 spawnPosition = GetSpawnPoint();
             } while (Vector2.Distance(spawnPosition, Player.transform.position) < 5f);
             Instantiate(enemyGroup[EnemyNum], spawnPosition, Quaternion.identity);
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(SpawnTime);
         }
     }
 }

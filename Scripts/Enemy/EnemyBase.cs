@@ -10,6 +10,7 @@ public class EnemyBase : MonoBehaviour
     public float AttackDamage;
     public float AttackCoolDown;
     public float Health;
+    public GameObject Bullet;
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
@@ -18,7 +19,7 @@ public class EnemyBase : MonoBehaviour
 
     private void Update()
     {
-        SelfDestory();
+
     }
 
     public virtual void Move()
