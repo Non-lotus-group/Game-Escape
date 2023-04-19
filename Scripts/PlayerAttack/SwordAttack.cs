@@ -21,4 +21,11 @@ public class SwordAttack : MonoBehaviour
         ThisPos = this.transform.position;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Recycler") && other.GetComponent<BoxCollider2D>() != null)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

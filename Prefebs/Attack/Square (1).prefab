@@ -103,6 +103,7 @@ MonoBehaviour:
   SwordRigid: {fileID: 0}
   ThisPos: {x: 0, y: 0}
   AttackValue: 0
+  AttackRange: 0
 --- !u!50 &7623518719510590047
 Rigidbody2D:
   serializedVersion: 4
