@@ -23,6 +23,8 @@ public class PlayerManager : MonoBehaviour
     public bool IsFly;
     public Vector2 HitNormal;
     public float attackValue;
+    public BoxCollider2D boxCollider1;
+    public PolygonCollider2D boxCollider2;
 
     private void Awake()
     {
@@ -138,19 +140,42 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        if (collider2D.tag == "Wall")
+    private void OnTriggerEnter2D(Collider2D other)
+    { // get the point boxcollider and trigger hit and get normal of this point then set gravity on normal direction 
+        if (other.tag == "Wall")
         {
-            Vector3 HitPoint = collider2D.ClosestPoint(transform.position);
+            Vector3 HitPoint = other.ClosestPoint(transform.position);
             HitNormal = (this.transform.position - HitPoint).normalized;
-            IsFly = false;
-            float LandAngle = Mathf.Atan2(HitNormal.x, HitNormal.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, -LandAngle));
-            JumpResetTime = 4f;
+            if (other.IsTouching(boxCollider1))
+            {
+
+                IsFly = false;
+                float LandAngle = Mathf.Atan2(HitNormal.x, HitNormal.y) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, -LandAngle));
+                JumpResetTime = 4f;
+            }
+            else
+            {
+                PlayerRigidBody.AddForce(HitNormal * (JumpCount + 1) * 3f, ForceMode2D.Impulse);
+                StartCoroutine(StunCoroutine());
+            }
+
         }
 
     }
+
+    IEnumerator StunCoroutine()
+    {
+        // 禁用玩家的操控
+        HorizontalSpeed = 0f;
+
+        // 等待一秒钟
+        yield return new WaitForSeconds(3f);
+
+        // 重新启用玩家的操控
+        HorizontalSpeed = 5f;
+    }
+
 
     void SetGravity()
     {

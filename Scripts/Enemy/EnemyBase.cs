@@ -18,7 +18,7 @@ public class EnemyBase : MonoBehaviour
 
     private void Update()
     {
-
+        SelfDestory();
     }
 
     public virtual void Move()

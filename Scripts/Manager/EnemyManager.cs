@@ -61,11 +61,10 @@ public class EnemyManager : MonoBehaviour
             Vector2 spawnPosition;
             do
             {
-                Debug.Log("flex");
                 spawnPosition = GetSpawnPoint();
             } while (Vector2.Distance(spawnPosition, Player.transform.position) < 5f);
             Instantiate(enemyGroup[EnemyNum], spawnPosition, Quaternion.identity);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(5f);
         }
     }
 }
