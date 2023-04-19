@@ -20,7 +20,9 @@ public class PlayerHealthManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyBallet") {
-            Debug.Log("hit by enemy");
+            float DisHp = collision.GetComponent<EnemyBullet1>().AttackValue;
+            PlayerHealth = PlayerHealth - DisHp;
+            Debug.Log(PlayerHealth);
         }
 
         

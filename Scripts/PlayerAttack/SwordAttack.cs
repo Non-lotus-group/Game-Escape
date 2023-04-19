@@ -26,5 +26,8 @@ public class SwordAttack : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.CompareTag("Ballet")) {
+            Destroy(other.gameObject);
+        }
     }
 }
