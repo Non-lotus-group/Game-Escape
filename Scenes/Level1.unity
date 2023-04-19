@@ -190,6 +190,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: player Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 935177778833361643, guid: a58abeea64bd446419db75b198dfc394,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 935177779332541822, guid: a58abeea64bd446419db75b198dfc394,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1872804003797565428, guid: a58abeea64bd446419db75b198dfc394,
         type: 3}
       propertyPath: boxCollider1

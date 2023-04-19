@@ -32,7 +32,6 @@ public class EnemyBase : MonoBehaviour
         if (collision.tag == "PlayerBallet")
         {
             SwordAttack Sward = collision.gameObject.GetComponent<SwordAttack>();
-            Debug.Log("hit");
             if (Sward != null)
             {
                 float AttackValue = Sward.AttackValue;
@@ -41,7 +40,7 @@ public class EnemyBase : MonoBehaviour
             }
             else
             {
-                Debug.Log("not catch");
+                Debug.Log(collision.name);
             }
 
         }
