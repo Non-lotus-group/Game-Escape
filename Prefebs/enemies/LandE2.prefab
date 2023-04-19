@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4052454709158666319}
   - component: {fileID: 553143305367007727}
   - component: {fileID: -4612959073556831462}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LandE2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,3 +154,5 @@ MonoBehaviour:
   AttackCoolDown: 0
   Health: 0
   Bullet: {fileID: 8849520892236589558, guid: 67abfa0311067428bb9712f595bc0cbe, type: 3}
+  BulletRotation: {x: 0, y: 0, z: 0, w: 0}
+  ShootAngle: 0

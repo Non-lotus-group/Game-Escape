@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7811901640293377307}
   - component: {fileID: 7811901640293377304}
   - component: {fileID: 4361120167569872659}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LandE1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,3 +153,4 @@ MonoBehaviour:
   AttackDamage: 0
   AttackCoolDown: 0
   Health: 100
+  Bullet: {fileID: 0}
