@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -11,15 +12,21 @@ public class EnemyBase : MonoBehaviour
     public float AttackCoolDown;
     public float Health;
     public GameObject Bullet;
+    public Slider HealthSlider;
+    public float MaxHealth;
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
+        MaxHealth = 100f;
         Health = 100f;
+        HealthSlider = GetComponentInChildren<Slider>();
+       
     }
 
     private void Update()
     {
-
+        HealthSlider.value = Health / MaxHealth;
+        SelfDestory();
     }
 
     public virtual void Move()
@@ -36,7 +43,6 @@ public class EnemyBase : MonoBehaviour
             {
                 float AttackValue = Sward.AttackValue;
                 Health = Health - AttackValue;
-                Debug.Log(Health);
             }
             else
             {

@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                PlayerRigidBody.AddForce(JumpDir * 5f * (JumpCount + 1), ForceMode2D.Impulse);//后期换成曲线涨幅？
+                PlayerRigidBody.AddForce(JumpDir * 0.5f * (JumpCount + 1)+JumpDir, ForceMode2D.Impulse);//后期换成曲线涨幅？
                 IsFly = true;
                 PlayerRigidBody.gravityScale = 0;
                 JumpCount++;
