@@ -14,6 +14,8 @@ public class EnemyBase : MonoBehaviour
     public GameObject Bullet;
     public Slider HealthSlider;
     public float MaxHealth;
+    public GameObject Gold;
+    public GameObject Exp;
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
@@ -56,6 +58,24 @@ public class EnemyBase : MonoBehaviour
         if (Health < 0)
         {
             Destroy(this.gameObject);
+            int GoldNum = Random.Range(10, 20);
+            int ExpNum = Random.Range(10, 20);
+            for (int i = 0; i < GoldNum; i++)
+            {
+                // 在自身位置周围随机一个位置
+                Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-8, 8), 5, 0);
+
+                // 在随机位置实例化预制体
+                Instantiate(Gold, spawnPosition, Quaternion.identity);
+            }
+            for (int i = 0; i < ExpNum; i++)
+            {
+                // 在自身位置周围随机一个位置
+                Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-8, 8), 5, 0);
+
+                // 在随机位置实例化预制体
+                Instantiate(Exp, spawnPosition, Quaternion.identity);
+            }
         }
     }
 }

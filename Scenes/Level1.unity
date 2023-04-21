@@ -130,6 +130,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47787536315697971, guid: a58abeea64bd446419db75b198dfc394,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47787536315697971, guid: a58abeea64bd446419db75b198dfc394,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 935177778833361642, guid: a58abeea64bd446419db75b198dfc394,
         type: 3}
       propertyPath: m_RootOrder
@@ -210,6 +220,11 @@ PrefabInstance:
       propertyPath: boxCollider2
       value: 
       objectReference: {fileID: 1136179341}
+    - target: {fileID: 5567081800245681445, guid: a58abeea64bd446419db75b198dfc394,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58abeea64bd446419db75b198dfc394, type: 3}
 --- !u!1 &690263981
@@ -6891,7 +6906,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810146460}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4715b30c892c14e8d9e9da6bef3d79b4, type: 3}
   m_Name: 
@@ -6905,3 +6920,56 @@ MonoBehaviour:
   EnemyNum: 0
   Player: {fileID: 0}
   SpawnTime: 0
+--- !u!1 &2099675241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 935177778833361643, guid: a58abeea64bd446419db75b198dfc394,
+    type: 3}
+  m_PrefabInstance: {fileID: 453768696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2099675245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099675241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6e45f17a0d2461690d2a7b554010aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerHealth: 0
+  MaxHealth: 0
+  HealthSlider: {fileID: 0}
+--- !u!114 &2099675249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099675241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40aeed3c8a7cf46bf9fd5858561c8b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Experence: 0
+  gold: 0
+--- !u!114 &2099675253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099675241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99571f1134df4f96ac185cc14b475af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MousePos: {x: 0, y: 0, z: 0}
+  SelfPos: {x: 0, y: 0, z: 0}
+  Distance: 0
+  cooldownTime: 5
+  GameTime: 0
+  JumpDir: {x: 0, y: 0, z: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -26,8 +27,11 @@ public class PlayerManager : MonoBehaviour
     public BoxCollider2D boxCollider1;
     public PolygonCollider2D boxCollider2;
 
+
     private void Awake()
+        
     {
+
         PlayerRigidBody = GetComponent<Rigidbody2D>();
         AbleJump = false;
         JumpResetTime = 4;

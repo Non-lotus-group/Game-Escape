@@ -12,7 +12,7 @@ public class EnemyBullet1 : MonoBehaviour
     void Start()
     {
         BulletRigidBody = GetComponent<Rigidbody2D>();
-        AttackValue = 10f;
+        AttackValue = 2f;
     }
 
     // Update is called once per frame

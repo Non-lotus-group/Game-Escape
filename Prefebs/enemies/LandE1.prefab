@@ -497,6 +497,9 @@ MonoBehaviour:
   Health: 100
   Bullet: {fileID: 0}
   HealthSlider: {fileID: 0}
+  MaxHealth: 0
+  Gold: {fileID: 6972254555041490276, guid: a5d3422b0eb3a49a8a6c455dfd6438d8, type: 3}
+  Exp: {fileID: 7452123963610859553, guid: 8007b9029feae4632b79d47f9400097a, type: 3}
 --- !u!1 &8119592924699614808
 GameObject:
   m_ObjectHideFlags: 0
