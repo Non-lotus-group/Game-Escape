@@ -25,7 +25,7 @@ public class WalkEnemyFar : EnemyBase
             ShootAngle = Mathf.Atan2(ShootDir.y, ShootDir.x) * Mathf.Rad2Deg;
             BulletRotation = Quaternion.AngleAxis(ShootAngle, Vector3.forward);
             Instantiate(Bullet, transform.position, BulletRotation);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(4f);
         }
     }
 }

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public Rigidbody2D PlayerRigidBody;
+    public float Vector;
     public bool AbleJump;
     public float HorizontalSpeed;
     public Vector2 JumpDir;
@@ -27,9 +28,8 @@ public class PlayerManager : MonoBehaviour
     public BoxCollider2D boxCollider1;
     public PolygonCollider2D boxCollider2;
 
-
     private void Awake()
-        
+
     {
 
         PlayerRigidBody = GetComponent<Rigidbody2D>();
@@ -55,12 +55,16 @@ public class PlayerManager : MonoBehaviour
         MoveHorizontal();
         GetMousePos();
         Attack();
-        Jump();
+        //Jump();
         JumpReset();
         JumpRotate();
         SetGravity();
+        Vector = PlayerRigidBody.velocity.magnitude;
     }
-
+    private void FixedUpdate()
+    {
+        Jump();
+    }
 
     void MoveHorizontal()
     {
@@ -73,6 +77,7 @@ public class PlayerManager : MonoBehaviour
     }
     void GetMousePos()
     {
+        //make sure mouse is inside of screen
         MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         SelfPos = this.transform.position;
         JumpDir = (MousePos - SelfPos).normalized;
@@ -82,17 +87,17 @@ public class PlayerManager : MonoBehaviour
     {
         if (IsFly == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
-                PlayerRigidBody.AddForce(JumpDir * 0.5f * (JumpCount + 1)+JumpDir, ForceMode2D.Impulse);//后期换成曲线涨幅？
-                IsFly = true;
                 PlayerRigidBody.gravityScale = 0;
+                IsFly = true;
+                Debug.Log("length:" + JumpDir.magnitude);
+                Debug.Log("vector:" + Vector);
+                PlayerRigidBody.AddForce(JumpDir * (JumpCount + 1) + JumpDir, ForceMode2D.Impulse);//后期换成曲线涨幅？
                 JumpCount++;
                 Debug.Log(JumpCount);
             }
         }
-
-
     }
     void Attack()
     {//实例化swordLight
@@ -161,6 +166,7 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 PlayerRigidBody.AddForce(HitNormal * (JumpCount + 1) * 3f, ForceMode2D.Impulse);
+                GetComponent<PlayerHealthManager>().PlayerHealth -= 5f;
                 StartCoroutine(StunCoroutine());
             }
 

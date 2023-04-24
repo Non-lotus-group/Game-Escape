@@ -19,10 +19,13 @@ public class PlayerHealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerHealth > 0) {
+        if (PlayerHealth > 0)
+        {
             HealthSlider.value = PlayerHealth / MaxHealth;
         }
-
+        else {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
