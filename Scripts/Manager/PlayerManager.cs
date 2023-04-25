@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     public float attackValue;
     public BoxCollider2D boxCollider1;
     public PolygonCollider2D boxCollider2;
+    public Vector3 HitPoint;
 
     private void Awake()
 
@@ -64,6 +65,9 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         Jump();
+        if (IsFly == false) {
+            HitNormal = (this.transform.position - HitPoint).normalized;
+        }
     }
 
     void MoveHorizontal()
@@ -153,7 +157,7 @@ public class PlayerManager : MonoBehaviour
     { // get the point boxcollider and trigger hit and get normal of this point then set gravity on normal direction 
         if (other.tag == "Wall")
         {
-            Vector3 HitPoint = other.ClosestPoint(transform.position);
+            HitPoint = other.ClosestPoint(transform.position);
             HitNormal = (this.transform.position - HitPoint).normalized;
             if (other.IsTouching(boxCollider1))
             {
